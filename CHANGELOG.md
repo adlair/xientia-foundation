@@ -10,6 +10,15 @@ El versionado seguirá el formato:
 - **MINOR:** incorporación de contenido o principios.
 - **PATCH:** corrección editorial sin cambio conceptual.
 
+## [0.2.0] — 2026-07-28
+
+### Añadido
+
+- XEP-0000 — Proceso de Evolución de la Biblioteca Fundacional.
+- Ciclo de vida formal para propuestas de evolución.
+- Clasificación, revisión, aprobación, implementación y trazabilidad de XEP.
+- Plantilla canónica para futuros XEP.
+
 ## [0.1.0] — 2026-07-28
 
 ### Añadido

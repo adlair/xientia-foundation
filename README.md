@@ -18,6 +18,7 @@ manera responsable.
 | Código | Documento | Propósito |
 |---|---|---|
 | XES-000 | Xientia Editorial System | Estándar editorial y documental de la Biblioteca. |
+| XEP-0000 | Proceso de Evolución de la Biblioteca Fundacional | Procedimiento para proponer, revisar y aprobar cambios sustantivos. |
 | XF-000 | Constitución de Xientia | Principios filosóficos y de gobernanza. |
 | XV-001 | Vision Paper | Qué es Xientia y hacia dónde se dirige. |
 | XA-002 | Arquitectura Conceptual | Modelo de conocimiento y componentes. |

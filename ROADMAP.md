@@ -3,6 +3,7 @@
 ## Etapa 0 — Fundación editorial
 
 - [ ] Consolidar XES-000.
+- [x] Crear XEP-0000 — Proceso de Evolución de la Biblioteca Fundacional.
 - [x] Crear estructura inicial del repositorio.
 - [x] Crear estructura inicial de XF-000.
 - [ ] Automatizar exportaciones a ODT, PDF, HTML y EPUB.

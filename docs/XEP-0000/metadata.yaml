@@ -1,0 +1,32 @@
+id: XEP-0000
+title: Proceso de Evolución de la Biblioteca Fundacional
+subtitle: >-
+  Procedimiento para proponer, revisar, aprobar e implementar cambios
+  sustantivos
+acronym: Xientia Evolution Proposal
+version: 0.1.0
+status: draft
+type: process
+classification: public
+language: es-MX
+license: CC-BY-4.0
+authors:
+  - Adlair Cerecedo-Méndez
+editorial_entity: Xientia
+series: Biblioteca Fundacional de Xientia
+created: 2026-07-28
+updated: 2026-07-28
+supersedes: []
+superseded_by: null
+related_xeps: []
+affected_documents:
+  - XES-000
+  - XF-000
+  - XV-001
+  - XA-002
+  - XT-003
+  - XP-004
+  - XB-005
+  - XI-006
+  - XD-007
+  - XG-008
