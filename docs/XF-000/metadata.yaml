@@ -1,0 +1,18 @@
+id: XF-000
+title: Constitución de Xientia
+subtitle: Fundamentos Filosóficos y Principios Fundamentales
+version: 0.1.0
+status: draft
+classification: public
+language: es-MX
+license: CC-BY-4.0
+authors:
+  - Adlair Cerecedo-Méndez
+editorial_entity: Xientia
+series: Biblioteca Fundacional de Xientia
+created: 2026-07-28
+updated: 2026-07-28
+principle: >
+  La ciencia progresa cuando el conocimiento puede preservarse,
+  verificarse, reproducirse y compartirse de manera responsable.
+motto: El conocimiento debe ser libre.

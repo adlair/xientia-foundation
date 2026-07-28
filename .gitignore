@@ -1,0 +1,31 @@
+# Compilaciones y exportaciones
+/build/*
+/exports/*
+!/exports/*/
+!/exports/*/.gitkeep
+
+# Mantener las carpetas
+!/build/.gitkeep
+!/exports/odt/.gitkeep
+!/exports/pdf/.gitkeep
+!/exports/epub/.gitkeep
+!/exports/html/.gitkeep
+!/exports/docx/.gitkeep
+
+# LibreOffice
+.~lock.*
+*.tmp
+
+# Obsidian local
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+
+# Logseq local
+logseq/bak/
+logseq/.recycle/
+
+# Sistema
+.DS_Store
+Thumbs.db
+*~
