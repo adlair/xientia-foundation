@@ -42,7 +42,7 @@ Los consejos científicos y editoriales que se constituyan deberán ejercer sus 
 
 La aceptación, corrección o retractación de trabajos corresponderá a procedimientos editoriales y científicos definidos, con responsables competentes y criterios publicados.
 
-La financiación podrá sostener infraestructura y trabajo editorial, pero no comprar dictámenes favorables, modificar conclusiones ni conferir privilegios indebidos sobre los procesos de revisión.
+Los órganos responsables deberán establecer procedimientos para declarar conflictos de interés, disponer abstenciones cuando corresponda y documentar intervenciones indebidas. La independencia enunciada en el artículo 21 deberá poder comprobarse en sus decisiones y mecanismos de revisión.
 
 La autonomía de cada revista o comunidad deberá convivir con reglas comunes de integridad, transparencia y protección de participantes.
 

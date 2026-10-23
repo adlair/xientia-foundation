@@ -30,9 +30,9 @@ La diversidad disciplinaria exigirá respetar diferencias metodológicas sin imp
 
 Xientia no se atribuirá autoridad exclusiva para determinar la validez de una investigación. La evaluación científica deberá descansar en evidencias, métodos, discusión crítica y procedimientos adecuados a cada disciplina.
 
-La popularidad, las calificaciones sociales, los patrocinios, las donaciones y las posiciones institucionales no deberán sustituir la revisión científica ni comprar decisiones editoriales.
+La legitimidad de una conclusión científica dependerá de la calidad de sus argumentos y evidencias, no de la posición social o institucional de quien la sostenga.
 
-Las comunidades y los consejos responsables de publicaciones deberán contar con criterios transparentes, mecanismos para gestionar conflictos de interés y posibilidades de corrección o revisión de sus decisiones.
+Las formas concretas de proteger la independencia editorial y gestionar conflictos de interés se regirán por los principios del artículo 21 y las garantías de gobernanza del artículo 46.
 
 ## Artículo 16. Autonomía de personas y comunidades
 
