@@ -52,7 +52,7 @@ La Biblioteca se encuentra en su etapa fundacional.
 
 Los documentos actualmente desarrollados incluyen:
 
-- **XF-000 — Constitución de Xientia:** estructura y contenidos fundacionales en borrador; pendiente de revisión y aprobación.
+- **XF-000 — Constitución de Xientia:** Declaración Fundacional, Preámbulo y nueve capítulos (66 artículos) desarrollados en borrador; glosario y registros editoriales actualizados. Pendientes la revisión final y la adopción institucional.
 - **XEP-0000 — Proceso de Evolución:** borrador de proceso, con propuesta de adopción provisional aún no adoptada.
 - **XV-001 — Vision Paper:** Declaración, Prefacio y quince capítulos consolidados en borrador, con auditorías documentales y revisiones pendientes.
 

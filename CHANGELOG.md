@@ -14,6 +14,9 @@ El versionado seguirá el formato:
 
 ### Documentación y revisión
 
+- Desarrollo en borrador de los nueve capítulos de XF-000 (artículos 1–66), consolidación de Declaración Fundacional y Preámbulo, y dos rondas de ajustes de coherencia normativa.
+- Actualización de glosario, metadatos y estado documental de XF-000 (CN-07); revisión final y adopción institucional pendientes.
+
 - Consolidación inicial de las 17 secciones de XV-001 como borradores editoriales.
 - Correcciones de la primera auditoría editorial de XV-001.
 - Registro de cotejo bibliográfico de siete referencias (2026-10-23); revisión científica independiente pendiente.

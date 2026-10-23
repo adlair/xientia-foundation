@@ -11,16 +11,19 @@
 
 ## Etapa 1 — Constitución
 
-- [x] Declaración Fundacional.
+- [x] Declaración Fundacional y Preámbulo (borradores consolidados).
 - [x] Capítulo I — La Ciencia, borrador fundacional.
-- [ ] Capítulo II — La Misión.
-- [ ] Capítulo III — La Visión.
-- [ ] Capítulo IV — Principios Fundamentales.
-- [ ] Capítulo V — Derechos.
-- [ ] Capítulo VI — Responsabilidades.
-- [ ] Capítulo VII — Gobernanza.
-- [ ] Capítulo VIII — Evolución.
-- [ ] Disposiciones finales.
+- [x] Capítulo II — La Misión (borrador).
+- [x] Capítulo III — La Visión (borrador).
+- [x] Capítulo IV — Principios Fundamentales (borrador).
+- [x] Capítulo V — Derechos (borrador).
+- [x] Capítulo VI — Responsabilidades (borrador).
+- [x] Capítulo VII — Gobernanza (borrador).
+- [x] Capítulo VIII — Evolución (borrador).
+- [x] Capítulo IX — Disposiciones finales (borrador).
+
+- [ ] XF-000 — Auditoría final de uniformidad editorial y coherencia con XV-001 y XEP-0000.
+- [ ] XF-000 — Revisión jurídica, decisión de adopción y autoridades competentes.
 
 ## Etapa 2 — Visión y arquitectura
 
