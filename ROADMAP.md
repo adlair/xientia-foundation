@@ -3,7 +3,8 @@
 ## Etapa 0 — Fundación editorial
 
 - [ ] Consolidar XES-000.
-- [x] Crear XEP-0000 — Proceso de Evolución de la Biblioteca Fundacional.
+- [x] Crear XEP-0000 — Proceso de Evolución de la Biblioteca Fundacional (borrador).
+- [ ] Resolver adopción institucional de XEP-0000 y autoridades competentes.
 - [x] Crear estructura inicial del repositorio.
 - [x] Crear estructura inicial de XF-000.
 - [ ] Automatizar exportaciones a ODT, PDF, HTML y EPUB.
@@ -23,7 +24,8 @@
 
 ## Etapa 2 — Visión y arquitectura
 
-- [ ] XV-001 — Vision Paper.
+- [x] XV-001 — Redacción y consolidación inicial de las 17 secciones (`draft`).
+- [ ] XV-001 — Revisión científica, jurídica y editorial independiente; aprobación institucional pendiente.
 - [ ] XA-002 — Arquitectura Conceptual.
 - [ ] XT-003 — Arquitectura Técnica.
 

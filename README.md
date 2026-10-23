@@ -50,6 +50,10 @@ ODT y PDF serán los formatos institucionales preferidos para distribución.
 
 La Biblioteca se encuentra en su etapa fundacional.
 
-El primer volumen en desarrollo es:
+Los documentos actualmente desarrollados incluyen:
 
-**XF-000 — Constitución de Xientia**
+- **XF-000 — Constitución de Xientia:** estructura y contenidos fundacionales en borrador; pendiente de revisión y aprobación.
+- **XEP-0000 — Proceso de Evolución:** borrador de proceso, con propuesta de adopción provisional aún no adoptada.
+- **XV-001 — Vision Paper:** Declaración, Prefacio y quince capítulos consolidados en borrador, con auditorías documentales y revisiones pendientes.
+
+Ninguno de estos documentos se presenta como aprobado institucionalmente. La planificación detallada de producto, arquitectura y negocio permanece pendiente.

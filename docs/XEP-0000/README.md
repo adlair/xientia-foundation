@@ -23,6 +23,8 @@ mecanismo mediante el cual esas modificaciones pueden ser consideradas.
 **Tipo:** Proceso  
 **Clasificación:** Pública
 
+**Adopción institucional:** Pendiente. El documento permanece en `draft`; no consta constitución formal del Comité Fundador ni decisión de aprobación. Véase [Propuesta de adopción fundacional](appendices/ADOPCION-FUNDACIONAL-PROPUESTA.md), que no ha sido adoptada.
+
 ## Principio rector
 
 Ningún cambio sustantivo a un documento fundacional deberá realizarse sin que

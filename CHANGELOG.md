@@ -10,6 +10,19 @@ El versionado seguirá el formato:
 - **MINOR:** incorporación de contenido o principios.
 - **PATCH:** corrección editorial sin cambio conceptual.
 
+## En desarrollo — 2026-10-23
+
+### Documentación y revisión
+
+- Consolidación inicial de las 17 secciones de XV-001 como borradores editoriales.
+- Correcciones de la primera auditoría editorial de XV-001.
+- Registro de cotejo bibliográfico de siete referencias (2026-10-23); revisión científica independiente pendiente.
+- Propuesta no adoptada de procedimiento fundacional para XEP-0000.
+- Evaluación preliminar A6 de privacidad e identidad, pendiente de revisión jurídica.
+- Sincronización A7 de metadatos, catálogo, roadmap y registros, sin declarar documentos aprobados.
+
+Estas entradas documentan trabajo en curso y **no constituyen una nueva edición aprobada**.
+
 ## [0.2.0] — 2026-07-28
 
 ### Añadido
