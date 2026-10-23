@@ -47,7 +47,9 @@ Las integraciones con servicios científicos y sistemas institucionales se prior
 
 En etapas posteriores podrán explorarse un grafo de conocimiento más amplio, herramientas de búsqueda y descubrimiento, entornos reproducibles de análisis, mecanismos de colaboración entre laboratorios y formatos multimedia de divulgación y discusión científica.
 
-Las herramientas de scripting y experimentación deberán diseñarse con controles de seguridad, aislamiento de ejecución y límites adecuados. Su alcance no podrá definirse únicamente por la cantidad de lenguajes o experimentos anunciados.
+La visión incluye un laboratorio computacional para ejecutar scripts, analizar datos y documentar procedimientos reproducibles cuando el tipo de investigación lo permita. No sustituirá laboratorios físicos ni podrá reproducir todos los experimentos. La ejecución de código de terceros exigirá aislamiento, cuotas de recursos, control de acceso, gestión de dependencias y mecanismos de auditoría.
+
+Los lenguajes admitidos, los modelos de ejecución y la posibilidad de compartir entornos se definirán en la arquitectura técnica y en el Plan de Producto. Su alcance no podrá medirse solo por la cantidad de lenguajes o experimentos anunciados.
 
 La asistencia mediante inteligencia artificial podrá facilitar determinadas tareas, pero deberá mantener visibles sus limitaciones, la procedencia de la información y la responsabilidad humana sobre las decisiones científicas.
 
@@ -73,7 +75,7 @@ La evolución tecnológica deberá acompañarse de una estructura institucional 
 
 El acceso libre al conocimiento no elimina los costos de infraestructura, preservación, soporte y trabajo editorial. Los modelos de sostenibilidad se analizarán sin permitir que la financiación determine la validez de una investigación o la aceptación de un artículo.
 
-Los calendarios, presupuestos, responsables y prioridades de implementación corresponderán al Plan de Producto (XP-004) y al Business Plan (XB-005). Este Vision Paper establece la dirección, no sustituye esos instrumentos.
+Los calendarios, presupuestos, responsables y prioridades de implementación corresponderán al Plan de Producto (XP-004) y al Business Plan (XB-005). En particular, XP-004 deberá definir para el MIV una matriz de hipótesis, indicadores, métodos de medición, participantes, criterios de decisión y evidencias esperadas, antes de afirmar que una validación ha tenido éxito. Este Vision Paper establece la dirección, no sustituye esos instrumentos.
 
 ## 14.9. Un horizonte abierto a la revisión
 

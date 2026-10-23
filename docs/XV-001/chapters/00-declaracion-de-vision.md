@@ -16,6 +16,4 @@ Queremos que una persona pueda presentar su trayectoria con información verific
 
 Xientia no pretende decidir qué es verdad por la popularidad de una publicación ni sustituir el juicio de la comunidad científica. Su papel será facilitar la trazabilidad, el examen crítico y la circulación responsable del conocimiento.
 
-Esta visión deberá ponerse a prueba. Antes de afirmar que Xientia mejora el trabajo científico, tendremos que demostrar su utilidad con investigadores e instituciones reales, reconocer sus límites y corregir lo que no funcione.
-
 Nuestra convicción es sencilla: **el conocimiento debe ser libre**. Construir las condiciones para que pueda compartirse, preservarse y utilizarse responsablemente es el propósito que orienta Xientia.

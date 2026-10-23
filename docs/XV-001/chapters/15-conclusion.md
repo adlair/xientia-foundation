@@ -9,9 +9,7 @@ language: es-MX
 
 # Capítulo XV — Conclusión
 
-La ciencia ha desarrollado formas cada vez más especializadas de producir, evaluar y compartir conocimiento. Esa especialización ha permitido avances importantes, pero también exige que investigadores e instituciones sepan relacionar información dispersa entre publicaciones, repositorios, perfiles académicos, proyectos y comunidades. Xientia nace de la intención de facilitar esas relaciones, no de reemplazar el trabajo ni las infraestructuras que ya existen.
-
-La propuesta reúne una dimensión social y otra documental. Busca que las personas puedan encontrarse y colaborar, pero también que sus contribuciones conserven contexto: quién participó, qué evidencia se presentó, qué versiones existen y qué evaluaciones o correcciones se realizaron. Ninguna de esas relaciones deberá confundirse con una certificación automática de verdad científica.
+La propuesta de Xientia solo tendrá sentido si logra aportar algo concreto al trabajo de quienes investigan. Ese valor no se medirá por la amplitud de sus promesas, sino por la utilidad de sus herramientas, la confianza que merezcan sus procedimientos y la capacidad de corregir sus errores.
 
 ## 15.1. Una infraestructura al servicio de quienes investigan
 

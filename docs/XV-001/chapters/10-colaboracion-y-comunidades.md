@@ -59,7 +59,9 @@ Las comunidades necesitarán formas de comunicación más ágiles que un artícu
 
 Un anuncio podrá enlazarse con un artículo, proyecto o publicación más extensa. Esa relación permitirá conservar el contexto y evitar que una afirmación breve se interprete como resultado científico independiente.
 
-Las herramientas de video, transmisiones en directo y otros formatos de comunicación podrán incorporarse gradualmente. Su presencia en la visión no significa que estén disponibles en el piloto.
+La visión contempla formatos audiovisuales distintos: videos extensos para conferencias, clases y demostraciones; piezas breves para comunicar hallazgos o invitar a consultar trabajos completos; y transmisiones en directo para seminarios, debates y actividades científicas. Cuando un contenido audiovisual presente resultados de investigación, deberá poder enlazarse con sus fuentes y señalar claramente si ha pasado por revisión formal.
+
+La creación, edición, alojamiento y transmisión de video implican costos, derechos de terceros, accesibilidad y moderación que deberán estudiarse antes de definir el alcance del producto. Estas capacidades no se consideran disponibles en el piloto.
 
 ## 10.7. Reconocimiento de contribuciones
 
