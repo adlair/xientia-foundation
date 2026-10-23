@@ -1,37 +1,21 @@
 ---
 document: XF-000
 section: declaracion-fundacional
-version: 0.1.0
+version: 0.2.0
 status: draft
 language: es-MX
 ---
 
 # Declaración Fundacional
 
-La humanidad ha construido su conocimiento durante milenios mediante la
-observación, el diálogo, la experimentación, el razonamiento y la transmisión
-de ideas entre generaciones.
+El conocimiento científico es resultado del trabajo de generaciones que han observado, razonado, experimentado y sometido sus ideas al examen de otras personas. Cada contribución se apoya, de alguna manera, en lo aprendido antes y abre la posibilidad de nuevas preguntas.
 
-Cada descubrimiento científico forma parte de un esfuerzo colectivo que
-trasciende personas, fronteras, instituciones y épocas. Incluso las
-contribuciones más originales se apoyan en conocimientos anteriores y adquieren
-su verdadero alcance cuando otras personas pueden examinarlas, cuestionarlas,
-reproducirlas y desarrollarlas.
+Xientia surge de la convicción de que ese conocimiento debe poder encontrarse, comprenderse, contrastarse y compartirse de manera responsable. Nos proponemos contribuir a ello mediante una infraestructura científica abierta e interoperable, concebida para servir a quienes investigan y a las comunidades e instituciones que hacen posible su trabajo.
 
-Xientia nace con el propósito de preservar, organizar y conectar el conocimiento
-científico mediante una infraestructura abierta, verificable, interoperable y
-orientada al servicio de la comunidad científica y de la sociedad.
+Reconocemos la libertad de investigación, la integridad de la evidencia, la atribución justa y la independencia del juicio científico como compromisos inseparables. Ninguna plataforma, autoridad o interés económico debe sustituir el examen crítico del conocimiento ni apropiarse de la labor colectiva que lo sostiene.
 
-Xientia reconoce que el conocimiento científico constituye uno de los
-patrimonios más valiosos de la humanidad. Su preservación, trazabilidad,
-verificación, reproducción y transmisión representan una responsabilidad
-compartida entre investigadores, instituciones, comunidades y generaciones.
+La apertura que defendemos no desconoce la autoría, la privacidad, la dignidad humana ni las restricciones éticas y jurídicas legítimas. Compartir conocimiento exige también proteger a las personas y reconocer sus derechos.
 
-La apertura del conocimiento deberá promoverse de manera responsable,
-respetando la autoría, la dignidad humana, la privacidad, la seguridad, la
-propiedad intelectual legítima y las restricciones éticas o jurídicas que
-resulten necesarias.
+Con estos compromisos proponemos la Constitución de Xientia como fundamento de sus decisiones futuras. Su texto permanece sujeto a revisión y a una adopción institucional expresa.
 
-Sobre estas convicciones se establece la Constitución de Xientia.
-
-> **El conocimiento debe ser libre.**
+**El conocimiento debe ser libre.**

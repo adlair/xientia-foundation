@@ -1,43 +1,19 @@
 ---
 document: XF-000
 section: preambulo
-version: 0.1.0
+version: 0.2.0
 status: draft
 language: es-MX
 ---
 
 # Preámbulo
 
-Desde los primeros registros de la humanidad, el conocimiento ha sido uno de
-los instrumentos más poderosos para comprender el universo, transformar la
-sociedad y mejorar la vida de las personas.
+La investigación científica se desarrolla en universidades, laboratorios, sociedades, publicaciones y comunidades que utilizan herramientas y procedimientos distintos. Esa diversidad es valiosa: permite enfoques especializados y formas diferentes de producir y evaluar resultados. Al mismo tiempo, relacionar publicaciones, datos, métodos, personas e instituciones puede exigir recorrer sistemas separados y reconstruir vínculos que no siempre están documentados con claridad.
 
-Cada descubrimiento científico representa un eslabón dentro de una construcción
-colectiva desarrollada por generaciones de personas que compartieron sus
-hallazgos, cuestionaron las ideas establecidas y permitieron que otras
-continuaran su trabajo.
+Existen iniciativas y servicios que ya resuelven partes importantes de este trabajo. Xientia no pretende desconocerlos ni reemplazarlos de manera indiscriminada. Su propuesta consiste en explorar cómo conectarlos mejor y cómo ofrecer espacios en los que la procedencia, las versiones, las contribuciones y las evaluaciones de un trabajo científico puedan reconocerse sin perder su contexto.
 
-Sin embargo, el conocimiento científico contemporáneo permanece disperso entre
-instituciones, publicaciones, repositorios, plataformas, bases de datos y
-sistemas que rara vez fueron concebidos para funcionar como un ecosistema. Esta
-fragmentación dificulta la colaboración, limita la reproducibilidad,
-obstaculiza el acceso y retrasa el avance de la ciencia.
+Una infraestructura de esa naturaleza necesita algo más que decisiones técnicas. Debe precisar qué derechos protege, qué responsabilidades atribuye, cómo se toman y revisan las decisiones y qué límites deben respetarse aun cuando cambien sus operadores, fuentes de financiación o tecnologías.
 
-Xientia nace con la convicción de que la ciencia necesita una infraestructura
-abierta, verificable, interoperable y orientada a preservar, organizar y
-conectar el conocimiento.
+Por esa razón se redacta esta Constitución. Sus capítulos establecen una propuesta de principios, derechos, responsabilidades y reglas de evolución que deberán orientar el desarrollo de Xientia. Los procedimientos específicos y las capacidades de producto corresponderán a otros documentos de la Biblioteca Fundacional.
 
-Xientia reconoce que ninguna persona, institución, empresa o gobierno puede
-atribuirse la propiedad exclusiva del progreso científico de la humanidad. Las
-personas e instituciones conservan la autoría y los derechos legítimos sobre sus
-contribuciones, pero el progreso depende de que el conocimiento pueda
-preservarse, verificarse, reproducirse y compartirse responsablemente.
-
-La plataforma existe para fortalecer la colaboración científica, fomentar la
-transparencia, impulsar la reproducibilidad, facilitar el acceso al
-conocimiento y construir una comunidad internacional basada en la evidencia,
-el respeto y la búsqueda permanente de una comprensión más rigurosa de la
-realidad.
-
-Toda decisión tomada dentro de Xientia deberá interpretarse a la luz de estos
-principios.
+Este texto no acredita que exista una organización científica plenamente constituida, ni que sus mecanismos ya estén implementados. Es un punto de partida para la deliberación, la revisión y la eventual adopción formal. Su utilidad dependerá de que los compromisos aquí expresados puedan traducirse en prácticas verificables y abiertas a corrección.
