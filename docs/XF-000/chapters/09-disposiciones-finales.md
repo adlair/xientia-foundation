@@ -64,7 +64,7 @@ Xientia deberá conservar versiones identificables de sus documentos fundacional
 
 Los registros de publicación deberán distinguir el texto propuesto del adoptado, así como las correcciones editoriales de las reformas sustantivas. Cuando se publiquen traducciones o ediciones derivadas, deberá identificarse su relación con la versión de referencia.
 
-La conservación y consulta de estos registros respetará las restricciones legítimas de privacidad, seguridad y confidencialidad. No se prometerá preservación indefinida sin condiciones técnicas e institucionales verificables.
+La conservación y consulta de estos registros respetará las restricciones legítimas de privacidad, seguridad y confidencialidad. Los instrumentos operativos deberán definir responsables, medidas y plazos de conservación acordes con las obligaciones aplicables y las capacidades disponibles. No se prometerá preservación indefinida sin condiciones técnicas e institucionales verificables.
 
 ## Artículo 66. Compromiso fundacional y cierre
 

@@ -16,7 +16,7 @@ Toda persona tendrá derecho a mantener una identidad propia dentro de Xientia, 
 
 La vinculación con una sociedad científica, universidad u organización no conferirá a esta propiedad sobre el perfil personal ni facultades para modificar sus contribuciones fuera de las competencias expresamente autorizadas.
 
-Los mecanismos de verificación deberán indicar su alcance y permitir corregir errores. Ningún distintivo de identidad podrá interpretarse como certificación automática de mérito científico.
+Los mecanismos de verificación deberán indicar qué aspecto se comprobó, por qué entidad y con qué alcance. La comprobación de identidad personal no equivaldrá a verificar una afiliación institucional o una credencial académica, y ninguna de ellas certificará por sí misma la calidad de una contribución científica. Deberá ser posible solicitar la corrección de datos inexactos.
 
 ## Artículo 28. Privacidad y protección de datos
 
@@ -70,7 +70,7 @@ La transparencia no exigirá divulgar identidades protegidas de revisores, infor
 
 Las personas tendrán derecho a solicitar la corrección de información inexacta y a impugnar decisiones que afecten su participación o reputación dentro de Xientia mediante procedimientos definidos, accesibles y documentados.
 
-La revisión deberá distinguir entre errores de identidad, disputas de atribución, medidas de moderación y decisiones científicas o editoriales. Cada clase de controversia requerirá responsables y criterios adecuados.
+La revisión deberá distinguir entre errores de identidad, disputas de atribución, medidas de moderación y decisiones científicas o editoriales. En cada caso deberán identificarse el objeto de la reclamación, la instancia responsable y las vías disponibles para corregir errores de hecho o de procedimiento. La revisión de un proceso editorial no supondrá sustituir sin fundamento el juicio científico de quienes sean competentes.
 
 El derecho a una revisión justa no implica derecho a una decisión favorable, a la publicación obligatoria de un artículo ni a la eliminación de registros científicos que deban preservarse legítimamente. Las correcciones y restricciones deberán mantener, cuando corresponda, una trazabilidad proporcional.
 

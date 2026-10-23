@@ -68,7 +68,7 @@ Las incompatibilidades concretas y sus procedimientos se desarrollarán en los i
 
 La gobernanza deberá establecer vías accesibles para revisar decisiones que afecten derechos, afiliaciones, acceso a comunidades, moderación o procedimientos editoriales.
 
-Los mecanismos deberán distinguir controversias administrativas de evaluaciones científicas. Una apelación podrá revisar la regularidad de un procedimiento sin sustituir arbitrariamente el juicio especializado que corresponda.
+Los mecanismos deberán distinguir controversias administrativas de evaluaciones científicas. Una apelación podrá examinar errores de hecho, incumplimientos de reglas, conflictos de interés o defectos de procedimiento. Cuando proceda una nueva valoración científica, deberá encomendarse a personas competentes e independientes, sin que la instancia de apelación imponga por sí sola una conclusión científica favorable.
 
 Las personas afectadas deberán contar, según la naturaleza del caso, con información suficiente, oportunidad de respuesta y revisión por responsables que no tengan conflictos de interés.
 

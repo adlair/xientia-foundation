@@ -64,7 +64,7 @@ La autonomía comunitaria implicará responsabilidad sobre sus reglas internas, 
 
 ## Artículo 41. Responsabilidades de Xientia como plataforma
 
-Xientia deberá procurar condiciones de seguridad, accesibilidad, interoperabilidad y continuidad proporcionadas a los servicios que efectivamente ofrezca.
+Xientia deberá definir y comunicar medidas de seguridad, accesibilidad, interoperabilidad y continuidad acordes con los servicios que efectivamente ofrezca, sus riesgos y los recursos disponibles. Las condiciones y limitaciones de conservación o recuperación de información deberán explicarse sin ofrecer garantías de disponibilidad o preservación indefinidas.
 
 Tendrá la responsabilidad de distinguir los datos declarados de los verificados, comunicar el estado editorial de las publicaciones y no atribuirse una capacidad de certificación científica que no posea.
 
