@@ -1,0 +1,9 @@
+{
+  "id": "XF-000", "metadata": "docs/XF-000/metadata.yaml",
+  "prefix": ["docs/XF-000/chapters/00-declaracion-fundacional.md", "docs/XF-000/chapters/00-preambulo.md"],
+  "chapter_1_heading": "Capítulo I — La ciencia",
+  "chapter_1_files": ["docs/XF-000/chapters/01-la-ciencia/article-01.md", "docs/XF-000/chapters/01-la-ciencia/article-02.md", "docs/XF-000/chapters/01-la-ciencia/article-03.md", "docs/XF-000/chapters/01-la-ciencia/article-04.md", "docs/XF-000/chapters/01-la-ciencia/article-05.md", "docs/XF-000/chapters/01-la-ciencia/article-06.md"],
+  "chapter_files": ["docs/XF-000/chapters/02-la-mision.md", "docs/XF-000/chapters/03-la-vision.md", "docs/XF-000/chapters/04-principios-fundamentales.md", "docs/XF-000/chapters/05-derechos.md", "docs/XF-000/chapters/06-responsabilidades.md", "docs/XF-000/chapters/07-gobernanza.md", "docs/XF-000/chapters/08-evolucion.md", "docs/XF-000/chapters/09-disposiciones-finales.md"],
+  "suffix": ["docs/XF-000/glossary.md", "docs/XF-000/references.md"],
+  "validation": {"kind": "article_sequence", "first": 1, "last": 66}
+}

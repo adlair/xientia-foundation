@@ -1,0 +1,33 @@
+{
+  "id": "XV-001",
+  "metadata": "docs/XV-001/metadata.yaml",
+  "prefix": [
+    "docs/XV-001/chapters/00-declaracion-de-vision.md",
+    "docs/XV-001/chapters/00-prefacio.md"
+  ],
+  "chapter_files": [
+    "docs/XV-001/chapters/01-el-problema.md",
+    "docs/XV-001/chapters/02-la-oportunidad-historica.md",
+    "docs/XV-001/chapters/03-que-es-xientia.md",
+    "docs/XV-001/chapters/04-que-no-es-xientia.md",
+    "docs/XV-001/chapters/05-la-vision.md",
+    "docs/XV-001/chapters/06-los-actores-del-ecosistema.md",
+    "docs/XV-001/chapters/07-el-ciclo-del-conocimiento.md",
+    "docs/XV-001/chapters/08-identidad-y-confianza-cientifica.md",
+    "docs/XV-001/chapters/09-publicacion-y-revistas.md",
+    "docs/XV-001/chapters/10-colaboracion-y-comunidades.md",
+    "docs/XV-001/chapters/11-ciencia-abierta.md",
+    "docs/XV-001/chapters/12-interoperabilidad-y-soberania.md",
+    "docs/XV-001/chapters/13-impacto-esperado.md",
+    "docs/XV-001/chapters/14-horizonte-de-evolucion.md",
+    "docs/XV-001/chapters/15-conclusion.md"
+  ],
+  "suffix": [
+    "docs/XV-001/references.md"
+  ],
+  "validation": {
+    "kind": "chapter_sequence",
+    "first": 1,
+    "last": 15
+  }
+}
