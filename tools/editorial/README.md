@@ -1,54 +1,80 @@
 # Sistema Editorial de Xientia
 
-**Versión:** 0.2.1
-**Estado:** herramienta editorial en validación
-**Documento compatible:** XF-000 — Constitución de Xientia
+**Versión de herramientas:** v0.3 (motor multivolumen y renderizador, fase 2)
+**Estado:** implementado y probado localmente; revisión editorial y pruebas de conversión adicionales pendientes.
+**Volúmenes compatibles:** XF-000, XV-001 y XEP-0000.
 
-## Propósito
+## Propósito y fuentes
 
-El Sistema Editorial de Xientia permite generar ediciones de consulta reproducibles a partir de los documentos Markdown de la Biblioteca Fundacional.
-
-Los archivos Markdown del repositorio constituyen la fuente documental. Las ediciones ODT y PDF son resultados derivados y no sustituyen los originales.
+Los archivos Markdown de `docs/` son las fuentes documentales. El sistema produce ediciones de consulta sin alterar esas fuentes. Los ODT y PDF son derivados; generar una edición no equivale a adoptarla institucionalmente.
 
 ## Requisitos
 
-- Python 3
-- Pandoc, para generar ODT
-- LibreOffice, para convertir ODT a PDF
+- Python 3 y Git para ensamblar Markdown y generar manifiestos.
+- Pandoc para crear ODT.
+- LibreOffice para convertir ODT a PDF.
+- `unittest` de la biblioteca estándar para las pruebas automatizadas.
 
-## Uso
+Ejecutar desde la raíz de `xientia-foundation`. Mantener las salidas **fuera del repositorio**.
 
-Desde la raíz del repositorio:
+## Comandos
+
+### Motor multivolumen: Markdown y manifiesto
+
+```bash
+python3 tools/editorial/build_library.py \
+  --repo "$PWD" --volume XV-001 \
+  --out /tmp/xientia-build-XV-001
+```
+
+Sustituir `XV-001` por `XF-000` o `XEP-0000` según corresponda.
+
+### Renderizador multivolumen: Markdown, ODT y PDF
+
+```bash
+python3 tools/editorial/render_library.py \
+  --repo "$PWD" --volume XV-001 \
+  --out /tmp/xientia-render-XV-001
+```
+
+La opción `--format` admite `odt`, `pdf` o `all` (predeterminado). El renderizador utiliza el motor multivolumen para generar las fuentes ensambladas y su manifiesto.
+
+### Ensamblador original de XF-000
 
 ```bash
 python3 tools/editorial/build_xientia.py \
-  --repo "$PWD" \
-  --out /tmp/xientia-editorial-build
+  --repo "$PWD" --out /tmp/xientia-legacy-XF-000
 ```
+
+Se conserva por compatibilidad y como referencia de regresión; no es el punto de entrada recomendado para nuevos volúmenes.
+
+### Pruebas
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover \
+  -s tools/editorial/tests -v
+```
+
+En la última validación local se aprobaron 11 pruebas. Las pruebas actuales no garantizan fidelidad visual ni simulan exhaustivamente errores de LibreOffice.
 
 ## Archivos generados
 
-- `XF-000_consulta.md`: documento consolidado.
-- `XF-000_consulta.odt`: edición para LibreOffice Writer.
-- `pdf/XF-000_consulta.pdf`: edición PDF.
-- `manifest.json`: registro de procedencia, versión, estado y hashes SHA-256.
+Por volumen: `<ID>_consulta.md`, `manifest.json`, `<ID>_consulta.odt` y `pdf/<ID>_consulta.pdf` cuando se usa el renderizador con formato completo. El manifiesto contiene versión, estado, commit, fuentes y hashes SHA-256 del Markdown; **no certifica** que la representación ODT/PDF sea visualmente perfecta.
 
-## Validaciones
+## Perfiles y validación
 
-El ensamblador comprueba la presencia y numeración de los 66 artículos constitucionales, el estado documental y las referencias explícitas a artículos.
+Los perfiles JSON de `tools/editorial/config/` declaran fuentes y orden:
 
-La generación del Markdown es reproducible para las mismas fuentes y configuración, según las pruebas realizadas.
+- **XF-000:** Declaración Fundacional, Preámbulo, artículos 1–66, glosario y referencias.
+- **XV-001:** Declaración de Visión, Prefacio, capítulos 1–15 y referencias.
+- **XEP-0000:** Declaración, secciones 1–11 y referencias.
 
-Las ediciones ODT y PDF requieren revisión visual antes de distribuirse.
+El motor verifica rutas, duplicados, secuencias documentales y estado `draft`. Los anexos de trabajo no se incorporan automáticamente al cuerpo principal.
 
-## Estado institucional
+## Revisión previa a distribución
 
-XF-000 permanece en versión general `0.1.0-draft`.
+Abrir el ODT en LibreOffice y revisar portada, índice, saltos de página, títulos, idioma, líneas viudas, referencias y última página. Comprobar también el PDF exportado y su correspondencia con la edición de consulta. No publicar como documento adoptado sin una decisión institucional real y documentada.
 
-Las ediciones generadas son documentos de consulta no adoptados. Su producción no representa aprobación institucional ni entrada en vigor.
+## Limitaciones actuales
 
-## Alcance futuro
-
-Se contempla extender el sistema editorial a XV-001 y XEP-0000, incorporar plantillas institucionales y fortalecer las pruebas automatizadas.
-
-Estas capacidades todavía no forman parte de la versión actual.
+No hay garantía de reproducibilidad binaria de ODT/PDF. La fecha de generación del manifiesto puede variar entre ejecuciones. Las fuentes pueden contener marcado Markdown de código para rutas o identificadores bibliográficos, que se mostrará en tipografía monoespaciada. Las pruebas de fallos y la inspección visual completa siguen siendo tareas pendientes.
