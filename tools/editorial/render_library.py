@@ -63,8 +63,6 @@ def main():
     if args.update_index_uno:
         if args.volume != 'XF-000' or args.format != 'all':
             ap.error('--update-index-uno requiere --volume XF-000 --format all')
-        if not args.uno_reference:
-            ap.error('--uno-reference es obligatorio con --update-index-uno')
         from uno_integration import run_experimental
         run_experimental(args, Path(__file__).resolve())
         return

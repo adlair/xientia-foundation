@@ -7,12 +7,13 @@ import subprocess
 import sys
 import tempfile
 from normalize_editorial_odt import main as normalize
+from editorial_template import resolve_template
 
 
 def run_experimental(args, renderer):
     repo = args.repo.resolve(strict=True)
     target = args.out.resolve()
-    reference = args.uno_reference.resolve(strict=True)
+    reference = resolve_template(renderer.parent, args.uno_reference)
     if target.exists():
         raise FileExistsError(f"Salida ya existe: {target}")
     if target == repo or repo in target.parents:

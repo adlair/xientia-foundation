@@ -17,4 +17,4 @@ class IntegrationTests(unittest.TestCase):
         self.assertIn("extra_page_headings(odt,args.volume)",source)
     def test_no_implicit_reference(self):
         source=(ROOT/'uno_integration.py').read_text()
-        self.assertIn('args.uno_reference.resolve',source)
+        self.assertIn('resolve_template(renderer.parent, args.uno_reference)',source)

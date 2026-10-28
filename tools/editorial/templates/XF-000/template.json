@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "template_id": "XF-000-editorial-v0.4-experimental",
+  "volume": "XF-000",
+  "status": "experimental",
+  "reference_file": "reference.odt",
+  "sha256": "093efd8b00066ab555dc1804c572d51fd5a253602d365a29dfffb3b5788927b0",
+  "source_commit": "6ce25975d148",
+  "purpose": "Donante de estilos, portada e índice; NO fuente normativa",
+  "contains_historical_text": true
+}
