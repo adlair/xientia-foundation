@@ -104,7 +104,7 @@ def main():
         cmd = [sys.executable, str(Path(__file__).with_name('update_toc_uno_r1.py')),
                '--input', str(source), '--out', str(stage), '--timeout', str(args.timeout)]
         supervise(cmd, args.timeout + 120)
-        validate(stage / NAMES[0], stage / NAMES[1], reference, args.expected_commit)
+        validate(stage / NAMES[0], stage / NAMES[1], source, args.expected_commit)
         publish(stage, out)
     print('UNO R4: documentos validados y publicados:', out)
 

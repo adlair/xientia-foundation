@@ -68,18 +68,18 @@ def compare_document_content(actual, reference, expected_commit=None):
 def validate(odt,pdf,reference,expected_commit=None):
     import pymupdf as fitz
     actual=odt_info(odt)
-    assert actual['articles']==list(range(1,67)), 'Secuencia de artículos incorrecta'
-    assert len(actual['main'])==13, 'No hay exactamente 13 encabezados principales'
-    assert len(actual['entries'])==13, 'No hay exactamente 13 entradas de índice'
-    assert all('Artículo ' not in e for e in actual['entries']), 'Índice contiene artículos'
+    if not (actual['articles']==list(range(1,67))): raise ValueError('Secuencia de artículos incorrecta')
+    if not (len(actual['main'])==13): raise ValueError('No hay exactamente 13 encabezados principales')
+    if not (len(actual['entries'])==13): raise ValueError('No hay exactamente 13 entradas de índice')
+    if not (all('Artículo ' not in e for e in actual['entries'])): raise ValueError('Índice contiene artículos')
     if reference:
         before=odt_info(reference)
         compare_document_content(actual, before, expected_commit)
     elif expected_commit is not None:
         compare_document_content(actual, actual, expected_commit)
     doc=fitz.open(pdf)
-    assert len(doc)>=3, 'PDF demasiado corto'
-    assert 'NO ADOPTADA' in doc[0].get_text(), 'Falta advertencia de no adopción'
+    if not (len(doc)>=3): raise ValueError('PDF demasiado corto')
+    if not ('NO ADOPTADA' in doc[0].get_text()): raise ValueError('Falta advertencia de no adopción')
     page=doc[1]
     links=[x for x in page.get_links() if x.get('kind')==fitz.LINK_GOTO]
     expected=[]
@@ -88,14 +88,14 @@ def validate(odt,pdf,reference,expected_commit=None):
         if not m:raise ValueError('Entrada sin página: '+entry)
         expected.append(int(m.group(1)))
     actual_targets={link['page']+1 for link in links if link.get('page',-1)>=0}
-    assert actual_targets==set(expected),f'Destinos PDF {actual_targets} vs índice {set(expected)}'
-    assert len(links)>=13,'Faltan enlaces internos'
+    if actual_targets != set(expected): raise ValueError(f'Destinos PDF {actual_targets} vs índice {set(expected)}')
+    if len(links) < 13: raise ValueError('Faltan enlaces internos')
     for title, page_num in zip(actual['main'], expected):
-        assert 1<=page_num<=len(doc),'Página fuera de rango'
-        assert title in doc[page_num-1].get_text(),f'Título ausente en página {page_num}: {title}'
+        if not 1 <= page_num <= len(doc): raise ValueError('Página fuera de rango')
+        if title not in doc[page_num-1].get_text(): raise ValueError(f'Título ausente en página {page_num}: {title}')
     pdf_text='\n'.join(p.get_text() for p in doc)
     numbers=[int(n) for n in re.findall(r'Artículo\s+(\d+)\.',pdf_text)]
-    assert numbers==list(range(1,67)), 'Secuencia PDF de artículos incorrecta'
+    if not (numbers==list(range(1,67))): raise ValueError('Secuencia PDF de artículos incorrecta')
     print('VALIDACIÓN OK:',len(doc),'páginas;',len(actual['entries']),'entradas;',len(links),'enlaces;',len(numbers),'artículos')
 
 if __name__=='__main__':

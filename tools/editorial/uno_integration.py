@@ -44,7 +44,7 @@ def run_experimental(args, renderer):
         final = tmp/'uno-output'
         uno_script = renderer.parent/'uno'/'update_toc_uno_r4.py'
         subprocess.run([sys.executable, str(uno_script), '--input', str(normalized),
-                        '--reference', str(reference), '--expected-commit', expected_commit, '--out', str(final)], check=True)
+                        '--reference', str(normalized), '--expected-commit', expected_commit, '--out', str(final)], check=True)
         # No public output until all components have been validated.
         (build/'XF-000_consulta.odt').unlink()
         shutil.copy2(final/'XF-000_actualizado.odt',build/'XF-000_consulta.odt')
