@@ -54,6 +54,10 @@ def main(source,reference,destination):
     cover_paragraphs=paragraphs([cover])
     if len(cover_paragraphs)!=5 or value(cover_paragraphs[0])!='XIENTIA / BIBLIOTECA FUNDACIONAL':
         raise ValueError('Estructura de portada de referencia inesperada')
+    markers = ('{{XIENTIA_TITLE}}', '{{XIENTIA_EDITION}}',
+               '{{XIENTIA_METADATA}}', '{{XIENTIA_DISCLAIMER}}')
+    if tuple(value(p) for p in cover_paragraphs[1:]) != markers:
+        raise ValueError('Marcadores de portada ausentes, duplicados o inesperados')
     if value(front[1])!='XF-000 · Edición de consulta — NO ADOPTADA':
         raise ValueError('Identificador o condición institucional inesperados')
     metadata=value(front[2])

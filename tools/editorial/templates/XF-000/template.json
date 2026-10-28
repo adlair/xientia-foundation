@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "template_id": "XF-000-editorial-v0.4-phase2-experimental",
+  "template_id": "XF-000-editorial-v0.4-phase3-r0-experimental",
   "volume": "XF-000",
   "status": "experimental",
   "reference_file": "reference.odt",
-  "sha256": "f8ef423f7f2521f32c9dbca793f55b9adc1e0ab33db0c8b3d625c8a6d9be24b7",
+  "sha256": "5ba6cccfac4dc494f5850684a9bc18a4e51c82cec556ce2a866fcee3823f7580",
   "source_commit": "f92d3a4",
-  "purpose": "Referencia ODT de portada, índice y estilos; no contiene cuerpo normativo",
-  "contains_historical_text": true
+  "purpose": "Referencia ODT con marcadores de portada, estilos e índice; sin contenido normativo ni metadatos históricos",
+  "contains_historical_text": false
 }
