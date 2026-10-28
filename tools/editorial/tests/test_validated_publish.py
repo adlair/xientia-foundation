@@ -1,4 +1,5 @@
 import json
+import hashlib
 import sys
 import tempfile
 import unittest
@@ -34,12 +35,12 @@ class ValidatedPublishTests(unittest.TestCase):
     def test_failed_validation_leaves_no_output(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d); repo=root/"repo"; repo.mkdir(); out=root/"published"
-            def fake_render(cmd, check):
+            def fake_render(cmd):
                 stage=Path(cmd[cmd.index("--out")+1]); stage.mkdir()
                 (stage/"manifest.json").write_text(json.dumps({
-                    "document":"XV-001","status":"draft","edition":"consulta-no-adoptada"
+                    "document":"XV-001","status":"draft","edition":"consulta-no-adoptada", "git_commit":"abc123", "dirty_tracked":True
                 }))
-            with patch("validated_publish.subprocess.run",side_effect=fake_render):
+            with patch("validated_publish.run_supervised",side_effect=fake_render), patch("validated_publish.git_commit",return_value="abc123"):
                 with self.assertRaises(FileNotFoundError):
                     publish_validated(self.args(repo,out), ROOT/"render_library.py")
             self.assertFalse(out.exists())
@@ -48,14 +49,18 @@ class ValidatedPublishTests(unittest.TestCase):
     def test_success_atomic_publish(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d); repo=root/"repo"; repo.mkdir(); out=root/"published"
-            def fake_render(cmd, check):
+            def fake_render(cmd):
                 stage=Path(cmd[cmd.index("--out")+1]); (stage/"pdf").mkdir(parents=True)
                 (stage/"manifest.json").write_text(json.dumps({
-                    "document":"XV-001","status":"draft","edition":"consulta-no-adoptada"
+                    "document":"XV-001","status":"draft","edition":"consulta-no-adoptada", "git_commit":"abc123", "dirty_tracked":True
                 }))
+                (stage/"XV-001_consulta.md").write_bytes(b"markdown")
+                manifest=json.loads((stage/"manifest.json").read_text())
+                manifest["output_sha256"]=hashlib.sha256(b"markdown").hexdigest()
+                (stage/"manifest.json").write_text(json.dumps(manifest))
                 (stage/"XV-001_consulta.odt").write_bytes(b"mock")
                 (stage/"pdf/XV-001_consulta.pdf").write_bytes(b"mock")
-            with patch("validated_publish.subprocess.run",side_effect=fake_render), \
+            with patch("validated_publish.run_supervised",side_effect=fake_render), patch("validated_publish.git_commit",return_value="abc123"), \
                  patch("validated_publish.validate_odt",return_value={"chapters":15,"articles":0,"headings":142}), \
                  patch("validated_publish.validate_odt_pdf",return_value={"headings":142,"pages":52}):
                 publish_validated(self.args(repo,out), ROOT/"render_library.py")
