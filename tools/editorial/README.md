@@ -78,3 +78,48 @@ Abrir el ODT en LibreOffice y revisar portada, índice, saltos de página, títu
 ## Limitaciones actuales
 
 No hay garantía de reproducibilidad binaria de ODT/PDF. La fecha de generación del manifiesto puede variar entre ejecuciones. Las fuentes pueden contener marcado Markdown de código para rutas o identificadores bibliográficos, que se mostrará en tipografía monoespaciada. Las pruebas de fallos y la inspección visual completa siguen siendo tareas pendientes.
+
+## Actualización automática del índice mediante UNO (experimental)
+
+El Sistema Editorial de Xientia permite generar una edición de consulta
+de XF-000 con actualización automática del índice mediante LibreOffice UNO.
+
+Esta funcionalidad es optativa y no modifica el comportamiento
+predeterminado del renderizador multivolumen.
+
+### Requisitos adicionales
+
+- Python con soporte para LibreOffice UNO.
+- PyMuPDF.
+- lxml.
+- LibreOffice y Pandoc.
+- Un ODT de referencia editorial previamente validado.
+
+### Ejecución
+
+Desde la raíz del repositorio, ejecutar el renderizador con las opciones
+--update-index-uno y --uno-reference.
+
+Ejemplo de ejecución en una sola línea:
+
+    python3 tools/editorial/render_library.py --repo "$PWD" --volume XF-000 --out /tmp/xientia-xf000-uno --update-index-uno --uno-reference /ruta/a/Xientia_XF000_Normalizado_Referencia.odt
+
+La referencia proporciona los estilos y la estructura editorial.
+Los metadatos de la edición proceden del documento generado.
+
+El sistema valida los 66 artículos constitucionales, las 13 entradas
+del índice, los enlaces internos y la correspondencia del commit Git.
+
+Los documentos derivados se publican únicamente después de superar
+las validaciones.
+
+### Limitaciones
+
+- Funcionalidad experimental disponible únicamente para XF-000.
+- La salida debe encontrarse fuera del repositorio.
+- El directorio de salida no debe existir previamente.
+- La referencia editorial debe proporcionarse explícitamente.
+- No se garantiza reproducibilidad binaria de ODT/PDF.
+- Se requiere inspección visual antes de distribuir.
+
+Las ediciones generadas permanecen en estado de consulta no adoptada.

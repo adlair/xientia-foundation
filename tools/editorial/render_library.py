@@ -57,7 +57,17 @@ def main():
     ap.add_argument('--out', required=True, type=Path)
     ap.add_argument('--format', choices=('odt','pdf','all'), default='all')
     ap.add_argument('--allow-dirty', action='store_true')
+    ap.add_argument('--update-index-uno', action='store_true', help='Experimental XF-000 only')
+    ap.add_argument('--uno-reference', type=Path, help='ODT de referencia validado')
     args = ap.parse_args()
+    if args.update_index_uno:
+        if args.volume != 'XF-000' or args.format != 'all':
+            ap.error('--update-index-uno requiere --volume XF-000 --format all')
+        if not args.uno_reference:
+            ap.error('--uno-reference es obligatorio con --update-index-uno')
+        from uno_integration import run_experimental
+        run_experimental(args, Path(__file__).resolve())
+        return
     repo = args.repo.resolve(strict=True)
     out = args.out.resolve()
     script_dir = Path(__file__).resolve().parent
