@@ -23,6 +23,11 @@
   "validation": {
     "kind": "chapter_sequence",
     "first": 1,
-    "last": 11
+    "last": 11,
+    "editorial": {
+      "cover": "dynamic",
+      "toc": "top_level",
+      "publication_status": "draft"
+    }
   }
 }
