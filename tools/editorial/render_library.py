@@ -59,7 +59,16 @@ def main():
     ap.add_argument('--allow-dirty', action='store_true')
     ap.add_argument('--update-index-uno', action='store_true', help='Experimental XF-000 only')
     ap.add_argument('--uno-reference', type=Path, help='ODT de referencia validado')
+    ap.add_argument('--validate-publish', action='store_true', help='Experimental XV-001/XEP-0000; validate ODT/PDF before atomic publication')
     args = ap.parse_args()
+    if args.update_index_uno and args.validate_publish:
+        ap.error('Opciones de publicación experimental mutuamente excluyentes')
+    if args.validate_publish:
+        if args.volume not in ('XV-001', 'XEP-0000') or args.format != 'all' or args.uno_reference:
+            ap.error('--validate-publish requiere XV-001 o XEP-0000, --format all y sin --uno-reference')
+        from validated_publish import publish_validated
+        publish_validated(args, Path(__file__).resolve())
+        return
     if args.update_index_uno:
         if args.volume != 'XF-000' or args.format != 'all':
             ap.error('--update-index-uno requiere --volume XF-000 --format all')
