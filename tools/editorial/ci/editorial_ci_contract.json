@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "phase": "F4.3-R0",
+  "repository": "xientia-foundation",
+  "source_of_truth": "markdown",
+  "supported_volumes": [
+    "XF-000",
+    "XV-001",
+    "XEP-0000"
+  ],
+  "publication": {
+    "allowed_document_status": "draft",
+    "edition": "consulta-no-adoptada",
+    "institutional_adoption": false,
+    "allow_automatic_institutional_release": false
+  },
+  "traceability": {
+    "require_git_commit": true,
+    "require_clean_tree_for_release_build": true,
+    "require_manifest": true,
+    "require_sha256": [
+      "markdown",
+      "odt",
+      "pdf"
+    ],
+    "require_tool_versions": true,
+    "require_validation_report": true
+  },
+  "ci": {
+    "pull_request": {
+      "run_tests": true,
+      "publish_artifacts": false
+    },
+    "main": {
+      "run_tests": true,
+      "build_consultation_editions": true,
+      "publish_institutional_release": false
+    },
+    "concurrency_audit": {
+      "automatic_on_pull_request": false,
+      "manual": true
+    }
+  }
+}
