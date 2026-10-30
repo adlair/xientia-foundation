@@ -1,0 +1,70 @@
+name: Xientia Editorial CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: editorial-ci-${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  editorial-validation:
+    name: Editorial contract and regression tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - name: Install editorial dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            python3 \
+            python3-venv \
+            python3-uno \
+            python3-yaml \
+            python3-lxml \
+            libreoffice-writer \
+            pandoc \
+            git \
+            ca-certificates \
+            fonts-dejavu-core \
+            fonts-liberation
+
+          /usr/bin/python3 -m venv \
+            --system-site-packages /tmp/xientia-ci-venv
+
+          /tmp/xientia-ci-venv/bin/python -m pip install \
+            "PyMuPDF==1.26.7"
+
+      - name: Inspect environment
+        run: |
+          python3 --version
+          libreoffice --version
+          pandoc --version
+          /tmp/xientia-ci-venv/bin/python -c \
+            "import uno, yaml, pymupdf, lxml; print('DEPENDENCIES: OK')"
+
+      - name: Validate editorial CI contract
+        run: |
+          /tmp/xientia-ci-venv/bin/python \
+            tools/editorial/ci/validate_ci_contract.py \
+            --contract \
+            tools/editorial/ci/editorial_ci_contract.json
+
+      - name: Run editorial regression suite
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          /tmp/xientia-ci-venv/bin/python -m unittest discover \
+            -s tools/editorial/tests \
+            -v
