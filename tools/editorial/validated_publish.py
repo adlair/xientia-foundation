@@ -59,6 +59,11 @@ def run_supervised(cmd):
 def publish_validated(args, renderer):
     if args.volume not in SUPPORTED or args.format != "all":
         raise ValueError("--validate-publish requiere XV-001 o XEP-0000 y --format all")
+    if getattr(args, "publish_with_evidence", False) and args.allow_dirty:
+        raise ValueError(
+            "Evidence publication requires a clean repository"
+        )
+
     repo = args.repo.resolve(strict=True)
     out = args.out.resolve()
     if out.exists() or out.is_symlink():
@@ -103,6 +108,24 @@ def publish_validated(args, renderer):
         for name, expected in artifact_hashes.items():
             if sha256_file(stage / name) != expected:
                 raise ValueError(f'Archivo alterado durante validación: {name}')
+        if getattr(args, "publish_with_evidence", False):
+            if args.allow_dirty:
+                raise ValueError(
+                    "Evidence publication requires a clean repository"
+                )
+
+            from ci.evidence_generate import generate_and_write_evidence
+
+            evidence_path = generate_and_write_evidence(
+                repo, stage, args.volume
+            )
+
+            if evidence_path != stage / "evidence.json":
+                raise RuntimeError("Unexpected evidence destination")
+
+            if not evidence_path.is_file():
+                raise RuntimeError("Evidence file missing")
+
         # Refuse replacement even if another process creates out during validation.
         publish_noreplace(stage, out)
         print(f"PUBLICACIÓN VALIDADA: {args.volume}: {out}")

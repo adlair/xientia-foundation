@@ -60,7 +60,18 @@ def main():
     ap.add_argument('--update-index-uno', action='store_true', help='Experimental XF-000 only')
     ap.add_argument('--uno-reference', type=Path, help='ODT de referencia validado')
     ap.add_argument('--validate-publish', action='store_true', help='Experimental XV-001/XEP-0000; validate ODT/PDF before atomic publication')
+    ap.add_argument(
+        '--publish-with-evidence',
+        action='store_true',
+        help='Experimental F4.3 R2-C: publish validated artifacts and evidence together'
+    )
     args = ap.parse_args()
+    if args.publish_with_evidence:
+        if not args.validate_publish:
+            ap.error('--publish-with-evidence requiere --validate-publish')
+        if args.allow_dirty:
+            ap.error('--publish-with-evidence no permite --allow-dirty')
+
     if args.update_index_uno and args.validate_publish:
         ap.error('Opciones de publicación experimental mutuamente excluyentes')
     if args.validate_publish:
