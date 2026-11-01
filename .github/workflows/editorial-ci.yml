@@ -4,12 +4,15 @@ on:
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - main
 
 permissions:
   contents: read
 
 concurrency:
-  group: editorial-ci-${{ github.workflow }}-${{ github.event.pull_request.number }}
+  group: editorial-ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -68,3 +71,53 @@ jobs:
           /tmp/xientia-ci-venv/bin/python -m unittest discover \
             -s tools/editorial/tests \
             -v
+
+      - name: Build and verify consultation editions on main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          set -eu
+
+          for volume in XV-001 XEP-0000; do
+            output="/tmp/xientia-f43-main-${volume}"
+
+            /tmp/xientia-ci-venv/bin/python \
+              tools/editorial/render_library.py \
+              --repo "$GITHUB_WORKSPACE" \
+              --volume "$volume" \
+              --out "$output" \
+              --validate-publish \
+              --publish-with-evidence
+
+            VOLUME="$volume" OUTPUT="$output" \
+              /tmp/xientia-ci-venv/bin/python - <<'PY'
+          import json
+          import os
+          import sys
+          from pathlib import Path
+
+          repo = Path(os.environ["GITHUB_WORKSPACE"])
+          root = Path(os.environ["OUTPUT"])
+          volume = os.environ["VOLUME"]
+
+          sys.path.insert(
+              0, str(repo / "tools/editorial/ci")
+          )
+
+          from evidence_verify import verify_package
+
+          evidence = json.loads(
+              (root / "evidence.json").read_text(encoding="utf-8")
+          )
+
+          result = verify_package(repo, root, evidence)
+
+          assert result["document"] == volume
+          assert result["artifacts_verified"] == 3
+          assert evidence["status"] == "draft"
+          assert evidence["institutional_adoption"] is False
+
+          print(f"{volume}: MAIN CI EVIDENCE VERIFIED")
+          PY
+          done
