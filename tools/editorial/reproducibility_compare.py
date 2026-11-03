@@ -153,6 +153,24 @@ def compare_packages(repo, package_a, package_b):
         for kind in ("markdown", "odt", "pdf")
     }
 
+    paths["manifest"] = (
+        a["root"] / "manifest.json",
+        b["root"] / "manifest.json",
+    )
+    paths["evidence"] = (
+        a["root"] / "evidence.json",
+        b["root"] / "evidence.json",
+    )
+
+    paths["manifest"] = (
+        a["root"] / "manifest.json",
+        b["root"] / "manifest.json",
+    )
+    paths["evidence"] = (
+        a["root"] / "evidence.json",
+        b["root"] / "evidence.json",
+    )
+
     initial_hashes = {
         kind: tuple(sha256_file(p) for p in pair)
         for kind, pair in paths.items()
@@ -168,7 +186,7 @@ def compare_packages(repo, package_a, package_b):
 
     odt_result = odt_component_comparison(*paths["odt"])
 
-    # Detect modifications occurring after initial verification.
+    # Recheck all five files in both verified packages.
     for kind, pair in paths.items():
         if tuple(sha256_file(p) for p in pair) != initial_hashes[kind]:
             raise ValueError(

@@ -173,3 +173,155 @@ class OdtComparisonTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class IntegrityRecheckTests(unittest.TestCase):
+
+    def test_manifest_change_detected(self):
+        self.assert_recheck_detects("manifest")
+
+    def test_evidence_change_detected(self):
+        self.assert_recheck_detects("evidence")
+
+    def assert_recheck_detects(self, kind):
+        from unittest.mock import patch
+        import reproducibility_compare as module
+
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+
+            paths = {
+                name: root / f"{name}.dat"
+                for name in (
+                    "markdown", "odt", "pdf",
+                    "manifest", "evidence"
+                )
+            }
+
+            for path in paths.values():
+                path.write_bytes(b"original")
+
+            def package():
+                return {
+                    "root": root,
+                    "evidence": {
+                        "artifacts": {
+                            name: {"path": f"{name}.dat"}
+                            for name in ("markdown", "odt", "pdf")
+                        }
+                    },
+                    "verification": {
+                        "document": "XV-001",
+                        "git_commit": "a" * 40,
+                    },
+                }
+
+            original_pdf = module.pdf_page_text
+
+            def mutate_after_verification(_):
+                paths[kind].write_bytes(b"modified")
+                return ["same text"]
+
+            with patch.object(
+                module,
+                "load_verified_package",
+                return_value=package(),
+            ), patch.object(
+                module,
+                "pdf_page_text",
+                side_effect=mutate_after_verification,
+            ), patch.object(
+                module,
+                "odt_component_comparison",
+                return_value={
+                    "passed": True,
+                    "different_members": [],
+                    "zip_metadata_differences": [],
+                    "zip_order_identical": True,
+                },
+            ):
+                with self.assertRaisesRegex(
+                    ValueError,
+                    f"Artifact changed during comparison: {kind}",
+                ):
+                    module.compare_packages(
+                        root, root, root
+                    )
+
+
+class IntegrityRecheckTests(unittest.TestCase):
+
+    def test_manifest_mutation_detected(self):
+        self._check_mutation("manifest")
+
+    def test_evidence_mutation_detected(self):
+        self._check_mutation("evidence")
+
+    def _check_mutation(self, target):
+        from unittest.mock import patch
+        import reproducibility_compare as module
+
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            packages = []
+
+            for name in ("a", "b"):
+                package = root / name
+                package.mkdir()
+
+                for filename in (
+                    "document.md",
+                    "document.odt",
+                    "document.pdf",
+                    "manifest.json",
+                    "evidence.json",
+                ):
+                    (package / filename).write_bytes(
+                        filename.encode("utf-8")
+                    )
+
+                packages.append(package)
+
+            def fake_load(repo, package):
+                package = Path(package)
+
+                return {
+                    "root": package,
+                    "verification": {
+                        "document": "XV-001",
+                        "git_commit": "a" * 40,
+                    },
+                    "evidence": {
+                        "artifacts": {
+                            "markdown": {"path": "document.md"},
+                            "odt": {"path": "document.odt"},
+                            "pdf": {"path": "document.pdf"},
+                        },
+                    },
+                }
+
+            def mutate(*args):
+                path = packages[0] / f"{target}.json"
+                path.write_bytes(b"changed")
+                return {"passed": True}
+
+            with patch.object(
+                module,
+                "load_verified_package",
+                side_effect=fake_load,
+            ), patch.object(
+                module,
+                "pdf_page_text",
+                return_value=["same text"],
+            ), patch.object(
+                module,
+                "odt_component_comparison",
+                side_effect=mutate,
+            ):
+                with self.assertRaisesRegex(
+                    ValueError,
+                    f"Artifact changed during comparison: {target}",
+                ):
+                    module.compare_packages(
+                        root, packages[0], packages[1]
+                    )
