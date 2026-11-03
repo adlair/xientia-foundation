@@ -383,3 +383,50 @@ class PdfVisualComparisonTests(unittest.TestCase):
 
         self.assertFalse(result["passed"])
         self.assertEqual(result["different_pages"], [2])
+
+
+class ComparatorSecurityTests(unittest.TestCase):
+
+    def test_symlink_package_root_rejected(self):
+        from reproducibility_compare import load_verified_package
+
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            package = root / "package"
+            package.mkdir()
+
+            link = root / "package-link"
+            link.symlink_to(package, target_is_directory=True)
+
+            with self.assertRaisesRegex(
+                ValueError, "Symlink package root rejected"
+            ):
+                load_verified_package(root, link)
+
+    def test_external_xml_entity_rejected(self):
+        from lxml import etree
+        from reproducibility_compare import normalized_metadata
+
+        payload = b'''<?xml version="1.0"?>
+<!DOCTYPE root [
+  <!ENTITY external SYSTEM "file:///etc/passwd">
+]>
+<root>&external;</root>'''
+
+        # La política de R1 debe rechazar DTD, no solo evitar
+        # la resolución de entidades externas.
+        with self.assertRaises((ValueError, etree.XMLSyntaxError)):
+            normalized_metadata(payload)
+
+    def test_plain_dtd_rejected(self):
+        from reproducibility_compare import normalized_metadata
+
+        payload = b'''<?xml version="1.0"?>
+<!DOCTYPE root>
+<root>ordinary content</root>'''
+
+        with self.assertRaisesRegex(
+            ValueError,
+            "DTD declarations are forbidden",
+        ):
+            normalized_metadata(payload)

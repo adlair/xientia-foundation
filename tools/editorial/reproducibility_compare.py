@@ -33,7 +33,16 @@ ZIP_ATTRIBUTES = (
 
 def load_verified_package(repo, root):
     """Verify a package before using any of its artifacts."""
-    root = Path(root).resolve(strict=True)
+    root = Path(root)
+
+    if root.is_symlink():
+        raise ValueError("Symlink package root rejected")
+
+    root = root.resolve(strict=True)
+
+    if not root.is_dir():
+        raise ValueError("Package root is not a directory")
+
     evidence_path = root / "evidence.json"
 
     if evidence_path.is_symlink():
@@ -57,7 +66,17 @@ def pdf_page_text(path):
 
 
 def normalized_metadata(data):
-    root = etree.fromstring(data)
+    parser = etree.XMLParser(
+        resolve_entities=False,
+        no_network=True,
+        load_dtd=False,
+        huge_tree=False,
+    )
+
+    root = etree.fromstring(data, parser=parser)
+
+    if root.getroottree().docinfo.doctype:
+        raise ValueError("DTD declarations are forbidden")
 
     for element in root.iter():
         if element.tag in VOLATILE_METADATA:
@@ -152,15 +171,6 @@ def compare_packages(repo, package_a, package_b):
         kind: (artifact(a, kind), artifact(b, kind))
         for kind in ("markdown", "odt", "pdf")
     }
-
-    paths["manifest"] = (
-        a["root"] / "manifest.json",
-        b["root"] / "manifest.json",
-    )
-    paths["evidence"] = (
-        a["root"] / "evidence.json",
-        b["root"] / "evidence.json",
-    )
 
     paths["manifest"] = (
         a["root"] / "manifest.json",

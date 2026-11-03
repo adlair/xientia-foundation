@@ -24,6 +24,20 @@ class ReproducibilityIntegrationTests(unittest.TestCase):
 
             source = EDITORIAL.parents[1]
 
+            source_status = subprocess.check_output(
+                [
+                    "git", "-C", str(source),
+                    "status", "--porcelain",
+                    "--untracked-files=all",
+                ],
+                text=True,
+            ).strip()
+
+            self.assertFalse(
+                source_status,
+                "Integration source repository must be clean",
+            )
+
             expected_commit = subprocess.check_output(
                 ["git", "-C", str(source), "rev-parse", "HEAD"],
                 text=True,
