@@ -317,7 +317,11 @@ class IntegrityRecheckTests(unittest.TestCase):
                 module,
                 "odt_component_comparison",
                 side_effect=mutate,
-            ):
+            ), patch.object(
+                module,
+                "pdf_visual_comparison",
+                return_value={"passed": True},
+            ) as visual:
                 with self.assertRaisesRegex(
                     ValueError,
                     f"Artifact changed during comparison: {target}",
@@ -325,3 +329,57 @@ class IntegrityRecheckTests(unittest.TestCase):
                     module.compare_packages(
                         root, packages[0], packages[1]
                     )
+
+
+class PdfVisualComparisonTests(unittest.TestCase):
+
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temporary.cleanup)
+        self.root = Path(self.temporary.name)
+
+    def make_pdf(self, name, texts):
+        import pymupdf
+
+        path = self.root / name
+
+        with pymupdf.open() as document:
+            for text in texts:
+                page = document.new_page()
+                page.insert_text((72, 72), text)
+            document.save(path)
+
+        return path
+
+    def test_identical_visual_pages(self):
+        from reproducibility_compare import pdf_visual_comparison
+
+        a = self.make_pdf("a.pdf", ["Xientia"])
+        b = self.make_pdf("b.pdf", ["Xientia"])
+
+        result = pdf_visual_comparison(a, b)
+
+        self.assertTrue(result["passed"])
+        self.assertEqual(result["different_pages"], [])
+
+    def test_visual_content_change_detected(self):
+        from reproducibility_compare import pdf_visual_comparison
+
+        a = self.make_pdf("a.pdf", ["Xientia"])
+        b = self.make_pdf("b.pdf", ["Xientia modificada"])
+
+        result = pdf_visual_comparison(a, b)
+
+        self.assertFalse(result["passed"])
+        self.assertEqual(result["different_pages"], [1])
+
+    def test_page_count_difference_detected(self):
+        from reproducibility_compare import pdf_visual_comparison
+
+        a = self.make_pdf("a.pdf", ["Página 1"])
+        b = self.make_pdf("b.pdf", ["Página 1", "Página 2"])
+
+        result = pdf_visual_comparison(a, b)
+
+        self.assertFalse(result["passed"])
+        self.assertEqual(result["different_pages"], [2])

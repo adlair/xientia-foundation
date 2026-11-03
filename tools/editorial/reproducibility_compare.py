@@ -186,6 +186,25 @@ def compare_packages(repo, package_a, package_b):
 
     odt_result = odt_component_comparison(*paths["odt"])
 
+    visual_result = pdf_visual_comparison(*paths["pdf"])
+
+    binary_result = {
+        "passed": all(
+            hashes[0] == hashes[1]
+            for kind, hashes in initial_hashes.items()
+            if kind in ("markdown", "odt", "pdf")
+        ),
+        "artifacts": {
+            kind: {
+                "identical": hashes[0] == hashes[1],
+                "sha256_a": hashes[0],
+                "sha256_b": hashes[1],
+            }
+            for kind, hashes in initial_hashes.items()
+            if kind in ("markdown", "odt", "pdf")
+        },
+    }
+
     # Recheck all five files in both verified packages.
     for kind, pair in paths.items():
         if tuple(sha256_file(p) for p in pair) != initial_hashes[kind]:
@@ -207,5 +226,48 @@ def compare_packages(repo, package_a, package_b):
                 "pages_b": len(pages_b),
             },
             "L2": odt_result,
+            "L3": visual_result,
+            "L4": binary_result,
         },
     }
+
+
+def pdf_visual_comparison(path_a, path_b):
+    """Compare rendered PDF pages at 72 DPI, RGB, without alpha."""
+
+    with pymupdf.open(path_a) as a, pymupdf.open(path_b) as b:
+        different = []
+
+        for index in range(max(len(a), len(b))):
+            if index >= len(a) or index >= len(b):
+                different.append(index + 1)
+                continue
+
+            pa = a[index].get_pixmap(
+                matrix=pymupdf.Matrix(1, 1),
+                colorspace=pymupdf.csRGB,
+                alpha=False,
+                annots=True,
+            )
+            pb = b[index].get_pixmap(
+                matrix=pymupdf.Matrix(1, 1),
+                colorspace=pymupdf.csRGB,
+                alpha=False,
+                annots=True,
+            )
+
+            if (
+                pa.width != pb.width
+                or pa.height != pb.height
+                or hashlib.sha256(pa.samples).digest()
+                != hashlib.sha256(pb.samples).digest()
+            ):
+                different.append(index + 1)
+
+        return {
+            "passed": not different,
+            "pages_a": len(a),
+            "pages_b": len(b),
+            "different_pages": different,
+            "render_dpi": 72,
+        }

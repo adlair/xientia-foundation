@@ -22,9 +22,12 @@ class ReproducibilityIntegrationTests(unittest.TestCase):
             root = Path(temporary)
             repo = root / "reference"
 
-            source = Path.home() / (
-                "Projects/Xientia/xientia-foundation"
-            )
+            source = EDITORIAL.parents[1]
+
+            expected_commit = subprocess.check_output(
+                ["git", "-C", str(source), "rev-parse", "HEAD"],
+                text=True,
+            ).strip()
 
             subprocess.run(
                 [
@@ -41,7 +44,7 @@ class ReproducibilityIntegrationTests(unittest.TestCase):
 
             self.assertEqual(
                 commit,
-                "3042f982593b54f2ce6e73ebf199be1f0110ef18",
+                expected_commit,
             )
 
             env = {
@@ -89,6 +92,18 @@ class ReproducibilityIntegrationTests(unittest.TestCase):
                     )
                     self.assertTrue(
                         result["levels"]["L2"]["passed"]
+                    )
+                    self.assertTrue(
+                        result["levels"]["L3"]["passed"]
+                    )
+                    binary = result["levels"]["L4"]
+
+                    self.assertEqual(
+                        binary["passed"],
+                        all(
+                            item["sha256_a"] == item["sha256_b"]
+                            for item in binary["artifacts"].values()
+                        ),
                     )
 
             status = subprocess.check_output(
