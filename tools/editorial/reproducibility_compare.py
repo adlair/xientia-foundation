@@ -13,6 +13,15 @@ EDITORIAL = Path(__file__).resolve().parent
 sys.path.insert(0, str(EDITORIAL / "ci"))
 
 from evidence_verify import verify_package, sha256_file
+from reproducibility_limits import (
+    MAX_ODT_BYTES,
+    MAX_PDF_BYTES,
+    validate_file_size,
+    validate_zip_inventory,
+    read_zip_member_bounded,
+    validate_pdf_input,
+    validate_page_pixels,
+)
 
 
 VOLATILE_METADATA = frozenset({
@@ -61,8 +70,19 @@ def load_verified_package(repo, root):
 
 
 def pdf_page_text(path):
+    path = Path(path)
+    validate_file_size(path, MAX_PDF_BYTES, "PDF")
+
     with pymupdf.open(path) as document:
-        return [page.get_text(sort=False) for page in document]
+        validate_pdf_input(path, document)
+
+        pages = []
+
+        for page in document:
+            validate_page_pixels(page)
+            pages.append(page.get_text(sort=False))
+
+        return pages
 
 
 def normalized_metadata(data):
@@ -87,7 +107,17 @@ def normalized_metadata(data):
 
 def odt_component_comparison(path_a, path_b):
     """Compare ODT components, excluding approved volatile dates."""
+    validate_file_size(
+        Path(path_a), MAX_ODT_BYTES, "ODT A"
+    )
+    validate_file_size(
+        Path(path_b), MAX_ODT_BYTES, "ODT B"
+    )
+
     with ZipFile(path_a) as a, ZipFile(path_b) as b:
+        validate_zip_inventory(a)
+        validate_zip_inventory(b)
+
         names_a = a.namelist()
         names_b = b.namelist()
 
@@ -122,8 +152,8 @@ def odt_component_comparison(path_a, path_b):
                     "attributes": changed,
                 })
 
-            data_a = a.read(name)
-            data_b = b.read(name)
+            data_a = read_zip_member_bounded(a, name)
+            data_b = read_zip_member_bounded(b, name)
 
             if name == "meta.xml":
                 data_a = normalized_metadata(data_a)
@@ -245,13 +275,25 @@ def compare_packages(repo, package_a, package_b):
 def pdf_visual_comparison(path_a, path_b):
     """Compare rendered PDF pages at 72 DPI, RGB, without alpha."""
 
+    path_a = Path(path_a)
+    path_b = Path(path_b)
+
+    validate_file_size(path_a, MAX_PDF_BYTES, "PDF A")
+    validate_file_size(path_b, MAX_PDF_BYTES, "PDF B")
+
     with pymupdf.open(path_a) as a, pymupdf.open(path_b) as b:
+        validate_pdf_input(path_a, a)
+        validate_pdf_input(path_b, b)
+
         different = []
 
         for index in range(max(len(a), len(b))):
             if index >= len(a) or index >= len(b):
                 different.append(index + 1)
                 continue
+
+            validate_page_pixels(a[index])
+            validate_page_pixels(b[index])
 
             pa = a[index].get_pixmap(
                 matrix=pymupdf.Matrix(1, 1),

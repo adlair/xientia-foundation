@@ -13,6 +13,22 @@ sys.path.insert(0, str(EDITORIAL))
 from reproducibility_compare import compare_packages
 
 
+def require_clean_source(source):
+    status = subprocess.check_output(
+        [
+            "git", "-C", str(source),
+            "status", "--porcelain",
+            "--untracked-files=all",
+        ],
+        text=True,
+    ).strip()
+
+    if status:
+        raise ValueError(
+            "Integration source repository must be clean"
+        )
+
+
 class ReproducibilityIntegrationTests(unittest.TestCase):
 
     def test_real_consultation_packages(self):
@@ -24,19 +40,7 @@ class ReproducibilityIntegrationTests(unittest.TestCase):
 
             source = EDITORIAL.parents[1]
 
-            source_status = subprocess.check_output(
-                [
-                    "git", "-C", str(source),
-                    "status", "--porcelain",
-                    "--untracked-files=all",
-                ],
-                text=True,
-            ).strip()
-
-            self.assertFalse(
-                source_status,
-                "Integration source repository must be clean",
-            )
+            require_clean_source(source)
 
             expected_commit = subprocess.check_output(
                 ["git", "-C", str(source), "rev-parse", "HEAD"],
@@ -129,6 +133,26 @@ class ReproducibilityIntegrationTests(unittest.TestCase):
             ).strip()
 
             self.assertFalse(status)
+
+
+    def test_dirty_source_rejected(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            repo = Path(temporary) / "repo"
+
+            subprocess.run(
+                ["git", "init", "-q", str(repo)],
+                check=True,
+            )
+
+            (repo / "untracked.txt").write_text(
+                "dirty", encoding="utf-8"
+            )
+
+            with self.assertRaisesRegex(
+                ValueError,
+                "Integration source repository must be clean",
+            ):
+                require_clean_source(repo)
 
 
 if __name__ == "__main__":
